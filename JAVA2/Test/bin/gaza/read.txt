@@ -1,0 +1,6 @@
+dahdouh,member,1,Wael,48,male,Gaza,058,dad
+dahdouh,martyr,2,Fatima,42,fmale,Gaza,058,mom,18-10-2023,fire,Gaza
+shaikh,martyr,1,Fawzi,45,male,Gaza,059,dad,8-10-2023,fire,Gaza
+shaikh,martyr,2,Mariam,40,fmale,Gaza,056,mom,27-10-2023,fire,Gaza
+shaikh,member,3,Ahmad,20,male,ramallah,055,son
+shaikh,member,4,Lina,17,fmale,ramallah,054,daughter

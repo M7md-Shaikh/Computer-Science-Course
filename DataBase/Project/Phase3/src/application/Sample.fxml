@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="301.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <top>
+      <TableView prefHeight="290.0" prefWidth="372.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="regNumber" prefWidth="94.40002286434174" text="Reg Number" />
+          <TableColumn fx:id="carType" prefWidth="102.39997100830078" text="Car Type" />
+            <TableColumn fx:id="carColor" prefWidth="103.20001220703125" text="Car Color" />
+        </columns>
+      </TableView>
+   </top>
+</BorderPane>

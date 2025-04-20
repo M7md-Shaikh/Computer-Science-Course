@@ -1,0 +1,356 @@
+
+package application;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Comparator;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.stage.Stage;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+
+public class Main extends Application {
+
+	static ArrayList<Country> Countrys;
+	static Country sourceCountry = null;
+	static Country destinationCountry = null;
+	Pane root = new Pane();
+	ComboBox<Label> source = new ComboBox<Label>();
+	ComboBox<Label> targ = new ComboBox<Label>();
+	ComboBox<String> filter = new ComboBox<>();
+	static float mapHieght=715;
+	static float mapWidth=1200;	
+	Group group=new Group();
+
+
+	@Override
+	public void start(Stage stage) throws FileNotFoundException {
+		Stage primaryStage = new Stage();
+
+		Scene scene = new Scene(root, 1580, 715);
+		primaryStage.setTitle("Booking");
+		root.setStyle("-fx-background-color:#90ee90	;\r\n");
+		initialize();
+		Label names[] = new Label[Countrys.size()];
+		Label s = new Label("Sorce :");
+		s.setFont(new Font(17));
+		s.setTextFill(Color.BLACK);
+		s.setMaxSize(70 ,80);
+		Label t = new Label("Target :");
+		t.setFont(new Font(17));
+		t.setTextFill(Color.BLACK);
+		t.setMaxSize(90 ,80);
+		Label f = new Label("Filter :");
+		f.setFont(new Font(17));
+		f.setTextFill(Color.BLACK);
+		f.setMaxSize(90 ,80);
+		source.setStyle("        -fx-background-radius:100;\r\n");
+		targ.setStyle("        -fx-background-radius:100;\r\n");
+		filter.setStyle("        -fx-background-radius:100;\r\n");
+		for (int i = 0, j = 0; i < names.length; i++, j++) {
+			names[i] = new Label();
+			names[i].setFont(new Font(13));
+			names[i].setTextFill(Color.BLACK);
+			names[i].setText(Countrys.get(i).name);
+			source.getItems().add(names[i]);
+			names[j] = new Label();
+			names[j].setFont(new Font(13));
+			names[j].setTextFill(Color.BLACK);
+			names[j].setText(Countrys.get(j).name);
+			targ.getItems().add(names[j]);
+		}
+		filter.getItems().addAll("Cost", "Distance", "Time");
+		source.setTranslateX(1350);
+		source.setTranslateY(50);
+		source.setPrefSize(180, 20);
+		targ.setTranslateX(1350);
+		targ.setTranslateY(90);
+		targ.setPrefSize(180, 20);
+		filter.setTranslateX(1350);
+		filter.setTranslateY(130);
+		filter.setPrefSize(180, 20);
+		s.setTranslateX(1210);
+		s.setTranslateY(50);
+		t.setTranslateX(1210);
+		t.setTranslateY(90);
+		f.setTranslateX(1210);
+		f.setTranslateY(130);
+
+		source.setOnAction(e -> {
+			String selectedText = source.getValue().getText();
+			sourceCountry = findCountryByName(selectedText);
+			if (sourceCountry != null) {
+				sourceCountry.getTest().setStyle("-fx-background-color: #FF0000; -fx-background-radius: 100;");
+			}
+		});
+
+		targ.setOnAction(e -> {
+			String selectedText = targ.getValue().getText();
+			destinationCountry = findCountryByName(selectedText);
+			if (destinationCountry != null) {
+				destinationCountry.getTest().setStyle("-fx-background-color: #FF0000; -fx-background-radius: 100;");
+			}
+		});
+
+		// Sorting items in the ComboBoxes
+		source.getItems().sort(Comparator.comparing(Label::getText));
+		targ.getItems().sort(Comparator.comparing(Label::getText));
+
+
+		Button run = new Button("Run");
+		run.setFont(new Font(15));
+		run.setTranslateX(1290);
+		run.setTranslateY(190);
+		run.setPrefSize(100, 25);
+		run.setAlignment(Pos.CENTER);
+		run.setStyle("-fx-background-color: #b197c3;\r\n" + "        -fx-background-radius:100;\r\n");
+
+		Button reset=new Button("Reset");
+		reset.setPrefSize(100, 25);
+		reset.setAlignment(Pos.CENTER);
+		reset.setTranslateX(1400);
+		reset.setTranslateY(190);
+		reset.setStyle("-fx-background-color: #b197c3;\r\n" + "        -fx-background-radius:100;\r\n");
+		reset.setFont(new Font(15));
+
+
+		TextArea path = new TextArea();
+		path.setTranslateX(1270);
+		path.setTranslateY(250);
+		path.setMinSize(260, 150);
+		path.setMaxSize(260, 1500);
+		path.setEditable(false);
+		path.setStyle(  "-fx-background-radius: 20;"+ 
+				"-fx-border-radius: 20;"+ 
+				"-fx-border-color: #2c3e50;"+
+				"-fx-background-color: #ecf0f1;"+ 
+				"-fx-font-size: 14px; ");
+
+		Label p=new Label("Path :");
+		p.setFont(new Font(17));
+		p.setTranslateX(1210);
+		p.setTranslateY(250);
+
+		TextField t1 = new TextField();
+		t1.setTranslateX(1350);
+		t1.setTranslateY(500);
+		t1.setPrefSize(150, 25);
+		t1.setStyle("  -fx-background-radius:100;\r\n");
+		t1.setEditable(false);
+		t1.setFont(new Font(15));
+
+		Label dis =new Label("Distance :");
+		dis.setFont(new Font(17));
+		dis.setTranslateX(1210);
+		dis.setTranslateY(500);
+
+		TextField t2 = new TextField();
+		t2.setTranslateX(1350);
+		t2.setTranslateY(550);
+		t2.setPrefSize(150, 25);
+		t2.setStyle("  -fx-background-radius:100;\r\n");
+		t2.setEditable(false);
+		t2.setFont(new Font(15));
+
+		Label totalCost =new Label("Cost :");
+		totalCost.setFont(new Font(17));
+		totalCost.setTranslateX(1210);
+		totalCost.setTranslateY(550);
+
+		TextField t3 = new TextField();
+		t3.setTranslateX(1350);
+		t3.setTranslateY(589);
+		t3.setPrefSize(150, 25);
+		t3.setStyle("  -fx-background-radius:100;\r\n");
+		t3.setEditable(false);
+		t3.setFont(new Font(15));
+
+		Label time =new Label("Time :");
+		time.setFont(new Font(17));
+		time.setTranslateX(1210);
+		time.setTranslateY(589);
+
+		run.setOnAction(e -> {
+			if (sourceCountry == null || destinationCountry == null) {
+				showErrorStage("Please select City");
+				return;
+			}
+
+			String selectedCriterion = filter.getValue();
+			if (selectedCriterion == null || selectedCriterion.isEmpty()) {
+				showErrorStage("Please select a filter");
+				return;
+			}
+
+			int v = 0, w = 0;
+			for (int i = 0; i < Countrys.size(); i++) {
+				if (sourceCountry.getFullName().equals(Countrys.get(i).getFullName()))
+					v = i;
+				if (destinationCountry.getFullName().equals(Countrys.get(i).getFullName()))
+					w = i;
+			}
+
+			if (sourceCountry != null && destinationCountry != null) {
+				Dijkstra graph = new Dijkstra(Countrys, Countrys.get(v), Countrys.get(w));
+				graph.generateDijkstra(selectedCriterion.toLowerCase());
+				clearPathOnMap(); // Clear the existing path before drawing the new one
+				drawPathOnMap(graph.pathTo(Countrys.get(w)));
+				if (!root.getChildren().contains(group)) {
+					root.getChildren().add(group);
+				}
+				path.setText(graph.getPathString());
+				t1.setText(graph.getDistanceString());
+				t2.setText(graph.getCostString());
+				t3.setText(graph.getTimeString());
+			}
+		});
+
+
+
+		reset.setOnAction(action ->{
+			if (sourceCountry != null && destinationCountry != null) {
+			sourceCountry.getTest().setStyle("-fx-background-color: #000000;\r\n" + "        -fx-background-radius:100;\r\n");
+			destinationCountry.getTest().setStyle("-fx-background-color: #000000;\r\n" + "        -fx-background-radius:100;\r\n");
+			}
+			sourceCountry=new Country();
+			destinationCountry=new Country();
+			group.getChildren().clear();
+			root.getChildren().remove(group);
+			source.setValue(new Label(""));
+			targ.setValue(new Label(""));
+			filter.setValue("");
+			path.setText(null);
+			t1.setText(null);
+			t2.setText(null);
+			t3.setText(null);
+		});
+
+		root.getChildren().addAll(source, targ, filter, run, path,t1 ,t2,t3, s, t,f,reset,p,dis,totalCost,time);
+		primaryStage.setScene(scene);// set the scene
+		primaryStage.show();
+	}
+
+	// Helper method to find a country by name
+	private Country findCountryByName(String name) {
+		for (Country country : Countrys) {
+			if (country.getFullName().equals(name)) {
+				return country;
+			}
+		}
+		return null;
+	}
+
+	private void clearPathOnMap() {
+		group.getChildren().clear();
+		root.getChildren().remove(group);
+	}
+
+
+	public void initialize() {
+		Image image1 = new Image("map.png");
+		ImageView imageView1 = new ImageView(image1);
+		imageView1.setFitHeight(mapHieght);
+		imageView1.setFitWidth(mapWidth);
+		imageView1.setVisible(true);
+		root.getChildren().add(imageView1);
+		for (int i = 0; i < Countrys.size(); i++) {
+
+			Button b = new Button();
+			Countrys.get(i).setTest(b);
+			b.setUserData(Countrys.get(i));
+			b.setTranslateX(getX(Countrys.get(i).x));
+			b.setTranslateY(getY(Countrys.get(i).y));
+
+			b.setMinWidth(10);
+			b.setMinHeight(10);
+			b.setMaxWidth(10);
+			b.setMaxHeight(10);
+			// set the button color and radius using css
+			b.setStyle("-fx-background-color: #000000;\r\n" + "        -fx-background-radius:100;\r\n");
+			b.setOnAction(event -> {
+				b.setStyle("-fx-background-color: #FF0000;\r\n" + "        -fx-background-radius:100;\r\n");
+				if (sourceCountry == null) {
+					sourceCountry = (Country) b.getUserData();
+					Label l = new Label();
+					l.setFont(new Font(20));
+					l.setTextFill(Color.BLACK);
+					l.setText(sourceCountry.name);
+					source.setValue(l);
+				} else if (destinationCountry == null && sourceCountry != null) {
+					destinationCountry = (Country) b.getUserData();
+					Label l = new Label();
+					l.setFont(new Font(20));
+					l.setTextFill(Color.BLACK);
+					l.setText(destinationCountry.name);
+					targ.setValue(l);
+				}
+			});
+
+			Label lb = new Label(Countrys.get(i).name);
+			lb.setFont(new Font(10));
+			lb.setTextFill(Color.BLACK);
+			lb.setTranslateX(getX(Countrys.get(i).x));
+			lb.setTranslateY(getY(Countrys.get(i).y) - 10);
+
+			root.getChildren().add(b);
+			root.getChildren().add(lb);
+		}
+
+	}
+
+
+	private void drawPathOnMap(Country[] cities) {
+		for (int i = 0; i < cities.length - 1; i++) {
+			Line line = new Line(getX(cities[i].x) + 5,getY(cities[i].y) + 5,
+					getX(cities[i+1].x) + 5,getY(cities[i+1].y) + 5);
+			line.setStroke(Color.BLACK);
+			line.setStrokeWidth(2);
+			group.getChildren().add(line);
+		}
+
+	}
+
+	private float getX(float xCountry) {
+		float div=mapWidth/1200;
+		return ((3.3334f*xCountry)-45)*div+mapWidth/2;
+	}
+	private float getY(float yCountry) {
+		float div=mapHieght/715;
+		return ((-3.97222f*yCountry)-22.5f)*div+mapHieght/2;
+	}
+
+	private void showErrorStage(String message) {
+		Stage errorStage = new Stage();
+		Label label = new Label(message);
+		label.setTextFill(javafx.scene.paint.Color.BLACK);
+		label.setFont(Font.font("Arial", 14));
+		VBox vbox = new VBox(label);
+		vbox.setAlignment(Pos.CENTER);
+		vbox.setPadding(new Insets(20));
+		Scene scene = new Scene(vbox, 300, 100);
+		errorStage.setScene(scene);
+		errorStage.show();
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+		Countrys = Dijkstra.readFile();
+		launch(args);
+	}
+}

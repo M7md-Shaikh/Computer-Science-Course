@@ -1,0 +1,240 @@
+package application;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+class TableEntry {
+	MyLinkedList<Edge> header = new MyLinkedList<>();
+	boolean known = false;
+	double dist = Double.MAX_VALUE;
+	Country path = null;
+}
+
+public class Dijkstra {
+	static MyArrayList<Country> Countrys = new MyArrayList<>();
+	static Hash allNodes = new Hash(32); // Initial size of 32, can be adjusted as needed
+	private Country source;
+	private Country destination;
+	private String pathString;
+	String distanceString;
+	String costString;
+	String timeString;
+	TableEntry[] table;
+
+	public Dijkstra(MyArrayList<Country> Countrys, Country source, Country destination) {
+		this.Countrys = Countrys;
+		this.source = source;
+		this.destination = destination;
+		this.table = new TableEntry[Countrys.size()];
+		initializeTable(source, Countrys, table);
+	}
+
+	public void generateDijkstra(String criterion) {
+		dijkstra(table, criterion);
+	}
+
+	public void initializeTable(Country start, MyArrayList<Country> countries, TableEntry[] table) {
+		for (int i = 0; i < countries.size(); i++) {
+			Country country = countries.get(i);
+			country.index = i; // Assuming Country class has an index field
+			TableEntry entry = new TableEntry();
+			entry.header = country.getAdjacentsList();
+			table[country.index] = entry;
+		}
+		table[start.index].dist = 0;
+	}
+
+	public void dijkstra(TableEntry[] table, String criterion) {
+		while (true) {
+			int v = smallUnknown(table);
+			if (v == -1) break; // No vertex left to process
+
+			table[v].known = true;
+			for (int i = 0; i < table[v].header.size(); i++) {
+				Edge edge = table[v].header.get(i);
+				Country w = edge.getAdjacentCity();
+				if (!table[w.index].known) {
+					double cvw = 0;
+					switch (criterion) {
+					case "distance":
+						cvw = edge.getDistance();
+						break;
+					case "cost":
+						cvw = edge.getCost();
+						break;
+					case "time":
+						cvw = edge.getTime();
+						break;
+					}
+					if (table[v].dist + cvw < table[w.index].dist) {
+						table[w.index].dist = table[v].dist + cvw;
+						table[w.index].path = Countrys.get(v); // Correct path assignment
+					}
+				}
+			}
+		}
+	}
+
+	publicint smallUnknown(TableEntry[] table) {
+		double minDist = Double.MAX_VALUE;
+		int minIndex = -1;
+		for (int i = 0; i < table.length; i++) {
+			if (!table[i].known && table[i].dist < minDist) {
+				minDist = table[i].dist;
+				minIndex = i;
+			}
+		}
+		return minIndex;
+	}
+
+	void printPath(Country v, TableEntry[] table) {
+		if (table[v.index].path != null) {
+			printPath(table[v.index].path, table);
+		}
+	}
+
+	public Country[] pathTo(Country destination) {
+		MyLinkedList<Country> countries = new MyLinkedList<>();
+		Country iterator = destination;
+		double totalDistance = 0;
+		double totalCost = 0;
+		double totalTime = 0;
+
+		pathString = ""; // Initialize pathString
+		StringBuilder formattedPath = new StringBuilder();
+
+		while (iterator != null && iterator != source) {
+			countries.add(iterator);
+
+			Country previous = table[iterator.index].path; // Get the previous node in the path
+			if (previous != null) {
+				boolean foundEdge = false;
+				for (int i = 0; i < previous.getAdjacentsList().size(); i++) {
+					Edge edge = previous.getAdjacentsList().get(i);
+					if (edge.getAdjacentCity() == iterator) {
+						totalDistance += edge.getDistance();
+						totalCost += edge.getCost();
+						totalTime += edge.getTime();
+
+						// Format the pathString and formattedPath
+						pathString = previous.getFullName() + " >> " + iterator.getFullName() + "      " + String.format("%.2f", edge.getDistance()) + " KM\n" + pathString;
+						formattedPath.append(previous.getFullName() + " >> " + iterator.getFullName() + "      " + String.format("%.2f", edge.getDistance()) + " KM\n");
+						foundEdge = true;
+						break;
+					}
+				}
+			} 
+			iterator = previous; // Move to the previous node in the path
+		}
+		if (source != null) {
+			countries.add(source); // Ensure the source country is included in the path
+			pathString = source.getFullName() + " >> " + pathString;
+		}
+		distanceString = String.format("%.2f", totalDistance);
+		costString = String.format("%.2f", totalCost);
+		timeString = String.format("%.2f", totalTime);
+
+		// Convert MyLinkedList to array
+		Country[] result = new Country[countries.size()];
+		for (int i = 0; i < countries.size(); i++) {
+			result[i] = countries.get(i);
+		}
+		return result;
+	}
+
+	public String getPathString() {
+		if (countOccurrences(pathString, '\n') <= 0) {
+			pathString = "No Path";
+			distanceString = "\t\t\t------------------";
+		} else {
+			pathString = "\t" + pathString;
+			int truncateIndex = pathString.lastIndexOf('\n');
+			pathString = pathString.substring(0, truncateIndex);
+		}
+		return pathString + "\nTotal Distance: " + distanceString + " KM";
+	}
+
+	private static int countOccurrences(String haystack, char needle) {
+		int count = 0;
+		for (int i = 0; i < haystack.length(); i++) {
+			if (haystack.charAt(i) == needle) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public static MyArrayList<Country> readFile() throws FileNotFoundException {
+		String line;
+		File file = new File("data.txt");
+		Scanner scan = new Scanner(file);
+
+		line = scan.nextLine().trim();
+		String[] str = line.split("\\s+");
+		int numberOfCountries = Integer.parseInt(str[0].trim());
+		int numberOfEdges = Integer.parseInt(str[1].trim());
+
+		for (int i = 0; i < numberOfCountries; i++) {
+			line = scan.nextLine().trim();
+			String[] countryData = line.split("\\s+");
+			String countryName = countryData[0];
+			float x = Float.parseFloat(countryData[1].trim());
+			float y = Float.parseFloat(countryData[2].trim());
+			Country country = new Country(countryName, x, y);
+			Countrys.add(country);
+			allNodes.putIfAbsent(countryName, country);
+		}
+
+		for (int i = 0; i < numberOfEdges; i++) {
+			if (scan.hasNextLine()) {
+				line = scan.nextLine().trim();
+				String[] edgeData = line.split("\\s+");
+				if (edgeData.length == 5) {
+					String fromCityName = edgeData[0].trim();
+					String toCityName = edgeData[1].trim();
+					double cost = Double.parseDouble(edgeData[2].replace("$", "").trim());
+					int time = Integer.parseInt(edgeData[3].trim());
+					double distance = distance(allNodes.get(fromCityName).getX(), allNodes.get(fromCityName).getY(), allNodes.get(toCityName).getX(), allNodes.get(toCityName).getY());
+
+					Country fromCity = allNodes.get(fromCityName);
+					Country toCity = allNodes.get(toCityName);
+					if (fromCity != null && toCity != null) {
+						fromCity.addAdjacentCity(toCity, distance, cost, time); // Add a directed edge
+					} else {
+						System.err.println("Invalid city reference: " + line);
+					}
+				} else {
+					System.err.println("Invalid edge data: " + line);
+				}
+			} else {
+				System.err.println("Insufficient edge data lines.");
+				break;
+			}
+		}
+
+		scan.close();
+		return Countrys;
+	}
+
+
+	public static double distance(double x1, double y1, double x2, double y2) {
+		return 6378.8
+				* Math.acos((Math.sin(Math.toRadians(y1)) * Math.sin(Math.toRadians(y2)))
+						+ Math.cos(Math.toRadians(y1)) * Math.cos(Math.toRadians(y2))
+						* Math.cos(Math.toRadians(x1) - Math.toRadians(x2)));
+	}
+
+	public String getDistanceString() {
+		return distanceString;
+	}
+
+	public String getCostString() {
+		return costString;
+	}
+
+	public String getTimeString() {
+		return timeString;
+	}
+
+}

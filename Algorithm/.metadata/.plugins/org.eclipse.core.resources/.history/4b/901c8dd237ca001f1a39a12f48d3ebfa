@@ -1,0 +1,36 @@
+package application;
+
+import java.util.Arrays;
+
+public class MyArrayList<T> {
+    private Object[] elements;
+    private int size = 0;
+    private static final int DEFAULT_CAPACITY = 10;
+
+    public MyArrayList() {
+        elements = new Object[DEFAULT_CAPACITY];
+    }
+
+    public void add(T element) {
+        if (size == elements.length) {
+            ensureCapacity();
+        }
+        elements[size++] = element;
+    }
+
+    public T get(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + size);
+        }
+        return (T) elements[index];
+    }
+
+    public int size() {
+        return size;
+    }
+
+    private void ensureCapacity() {
+        int newSize = elements.length * 2;
+        elements = Arrays.copyOf(elements, newSize);
+    }
+}

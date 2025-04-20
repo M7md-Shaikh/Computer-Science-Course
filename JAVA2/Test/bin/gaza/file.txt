@@ -1,0 +1,12 @@
+Family shaikh : have (2) Martyr
+Parent: Martyr [ID = 1, Name =Fawzi, Age=45, Gender =male, Address =Gaza, Contactlnfo =059, Date Of Martyrdom =8-10-2023, Cause Of Death()=fire, Place Of Death()=Gaza]
+Parent: Martyr [ID = 2, Name =Mariam, Age=40, Gender =fmale, Address =Gaza, Contactlnfo =056, Date Of Martyrdom =27-10-2023, Cause Of Death()=fire, Place Of Death()=Gaza]
+Member: Martyr [ID = 1, Name =Fawzi, Age=45, Gender =male, Address =Gaza, Contactlnfo =059, Date Of Martyrdom =8-10-2023, Cause Of Death()=fire, Place Of Death()=Gaza]
+Member: Martyr [ID = 2, Name =Mariam, Age=40, Gender =fmale, Address =Gaza, Contactlnfo =056, Date Of Martyrdom =27-10-2023, Cause Of Death()=fire, Place Of Death()=Gaza]
+Member: LivePerson [ ID =3, Name =Ahmad, Age =20, Gender =male, Addres =ramallah, Contactlnfo =055]
+Member: LivePerson [ ID =4, Name =Lina, Age =17, Gender =fmale, Addres =ramallah, Contactlnfo =054]
+Family dahdouh : have (1) Martyr
+Parent: LivePerson [ ID =1, Name =Wael, Age =48, Gender =male, Addres =Gaza, Contactlnfo =058]
+Parent: Martyr [ID = 2, Name =Fatima, Age=42, Gender =fmale, Address =Gaza, Contactlnfo =058, Date Of Martyrdom =18-10-2023, Cause Of Death()=fire, Place Of Death()=Gaza]
+Member: LivePerson [ ID =1, Name =Wael, Age =48, Gender =male, Addres =Gaza, Contactlnfo =058]
+Member: Martyr [ID = 2, Name =Fatima, Age=42, Gender =fmale, Address =Gaza, Contactlnfo =058, Date Of Martyrdom =18-10-2023, Cause Of Death()=fire, Place Of Death()=Gaza]

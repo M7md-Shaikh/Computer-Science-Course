@@ -1,0 +1,220 @@
+51 168
+Jaber 40 40
+Berlin 13.404954 52.520008
+Bangkok 100.523186 13.736717
+Naypyidaw 96.199379 16.871311
+Jakarta 106.774124 -6.121435
+Abuja 7.4833 9.0667
+Windhoek 17.0832 -24.5594
+Antananarivo 47.5361 -23.9137
+Islamabad 73.084488 33.738045
+Ashgabat 58.238056 37.862499
+Oslo 10.757933 59.911491
+Nuuk -34.7216 66.1835
+Muscat 58.545284 23.614328
+Addis_Ababa 38.763611 9.005401
+Manila 120.984222 14.599512
+Rome 12.496366 41.902782
+Riyadh 46.71667 24.63333
+Cairo 31.23528 30.04167
+Beijing 116.348 39.959
+Algiers 3.04194 36.75333
+Paris 2.3522219 48.856614
+Tripoli 13.19611 32.87222
+Khartoum 32.53333 15.63333
+Washington_DC -77.03667 38.89500
+Moscow 37.6173 55.755826
+Brasília -46.1728965 -22.9068467
+Ankara 32.85417 39.91944
+Bamako -8.0028892 12.6392316
+Mumbai 72.8776559 19.0759837
+Buenos_Aires -58.3712 -34.6037618
+Madrid -3.7037902 40.4167754
+Ottawa -75.70000 50.41694
+Mexico_City -99.134007 19.380002
+Canberra 149.12807 -35.28346
+Kyiv 30.52333 50.45000
+London -0.0877583 53.2073509
+Rabat -6.8498129 33.9715904
+Bogota -74.072092 4.7109886
+Tehran 51.3889736 35.6891975
+Tokyo 133.6503 35.6762
+Nur-Sultan 71.449074 51.169392
+Reykjavik -13.827774 67.128288
+Ulaanbaatar 100.918556 48.921230
+Dodoma 35.73947 -6.17221
+Lima -77.042793 -12.046374
+Montevideo -55.164532 -34.901112
+Sucre -65.119293 -18.489689
+Helsinki 24.945831 65.192059
+Stockholm 18.063240 59.334591
+N'Djamena 16.054325 12.137752
+Warsaw 21.017532 52.237049
+Ulaanbaatar Ankara 502$ 600 min
+Ulaanbaatar Washington_DC 1145$ 1100 min
+Beijing Buenos_Aires 2002$ 1860 min
+Beijing Lima 2781$ 1620 min
+Abuja Cairo 643$ 305 min
+Kyiv Moscow 111$ 215 min
+Tehran Tripoli 300$ 305 min
+Oslo Addis_Ababa 574$ 600 min
+Mumbai Bamako 971$ 2090 min
+Madrid Muscat 361$ 690 min
+Bangkok Mumbai 394$ 370 min
+Reykjavik Riyadh 884$ 730 min
+Montevideo Bogota 592$ 567 min
+Nur-Sultan Canberra 1048$ 1400 min
+Helsinki Buenos_Aires 1072$ 1325 min
+Washington_DC Paris 330$ 420 min
+Mexico_City Madrid 650$ 620 min
+Tripoli Ashgabat 909$ 675 min
+Dodoma Brasília 1218$ 1100 min
+Islamabad Manila 1052$ 780 min
+Riyadh Addis_Ababa 399$ 330 min
+Berlin Jakarta 759$ 1195 min
+Islamabad Oslo 1037$ 1200 min
+Manila Kyiv 861$ 1200 min
+London Cairo 236$ 595 min
+Canberra Ottawa 1203$ 1040 min
+Nuuk Beijing 1300$ 1500 min
+Naypyidaw Lima 1080$ 1077 min
+Mumbai Abuja 634$ 800 min
+N'Djamena Manila 1277$ 1350 min
+Beijing Montevideo 1578$ 3300 min
+Abuja Lima 2281$ 1415 min
+Jakarta Antananarivo 200$ 300 min
+Lima Ashgabat 3421$ 1807 min
+Naypyidaw Bangkok 80$ 35 min
+Oslo Montevideo 820$ 1540 min
+Nuuk Nur-Sultan 1040$ 1300 min
+Ankara Warsaw 135$ 400 min
+Kyiv Lima 1800$ 1480 min
+Washington_DC Nuuk 976$ 635 min
+Riyadh Sucre 1384$ 1658 min
+Ottawa Paris 462$ 680 min
+Ankara Nuuk 500$ 700 min
+Lima Warsaw 1922$ 1245 min
+Tehran Oslo 400$ 600 min
+Tripoli Moscow 840$ 820 min
+Bamako Cairo 500$ 200 min
+Sucre Antananarivo 2478$ 2623 min
+Tehran Bamako 793$ 945 min
+Stockholm Dodoma 578$ 1440 min
+Kyiv Ashgabat 1038$ 505 min
+Nuuk Mexico_City 1000$ 700 min
+Islamabad Brasília 1760$ 1560 min
+Naypyidaw Khartoum 1053$ 1530 min
+Buenos_Aires Ashgabat 1794$ 1635 min
+Brasília Rabat 806$ 1100 min
+Helsinki Ashgabat 640$ 680 min
+Dodoma Naypyidaw 630$ 1300 min
+Windhoek Rome 573$ 1036 min
+Bamako Canberra 1840$ 1730 min
+Rabat Moscow 564$ 1700 min
+Algiers Buenos_Aires 1073$ 1440 min
+Algiers Helsinki 201$ 650 min
+Riyadh London 168$ 900 min
+Ottawa Tripoli 964$ 900 min
+Sucre Windhoek 1082$ 1885 min
+Ottawa Berlin 610$ 615 min
+Oslo Tehran 330$ 710 min
+Paris Rome 46$ 120 min
+Islamabad Nur-Sultan 822$ 1740 min
+Kyiv Dodoma 1037$ 1100 min
+Berlin Paris 80$ 110 min
+Lima Algiers 1149$ 1200 min
+Addis_Ababa Algiers 423$ 620 min
+Stockholm Brasília 904$ 1155 min
+Khartoum Sucre 1138$ 2150 min
+Jaber Rome 1200$ 230 min
+Brasília Manila 1237$ 1900 min
+Bangkok Dodoma 1006$ 1245 min
+Stockholm Riyadh 282$ 470 min
+London Ashgabat 643$ 1222 min
+Antananarivo Tripoli 1532$ 2400 min
+London Brasília 730$ 930 min
+Addis_Ababa Tehran 1214$ 540 min
+Bogota Warsaw 1051$ 1079 min
+Rome Tokyo 594$ 1000 min
+Addis_Ababa Bogota 1242$ 1785 min
+Ottawa Brasília 671$ 880 min
+Bamako Nuuk 1500$ 1326 min
+Buenos_Aires Stockholm 1163$ 1080 min
+Islamabad Bogota 1134$ 1520 min
+Mexico_City Ulaanbaatar 1111$ 1925 min
+Stockholm N'Djamena 958$ 680 min
+Kyiv Warsaw 44$ 55 min
+Manila Mumbai 376$ 655 min
+Sucre Bamako 1283$ 1860 min
+Moscow Bamako 865$ 1410 min
+Khartoum Kyiv 622$ 685 min
+Windhoek Berlin 770$ 1187 min
+Islamabad Riyadh 396$ 590 min
+Canberra Berlin 740$ 1300 min
+Berlin Algiers 134$ 360 min
+Buenos_Aires Jakarta 1494$ 2125 min
+Jakarta Brasília 1456$ 1565 min
+Manila Moscow 555$ 1030 min
+Kyiv Algiers 300$ 900 min
+N'Djamena Ankara 722$ 525 min
+Tripoli Dodoma 500$ 748 min
+Ashgabat Khartoum 900$ 1200 min
+N'Djamena Riyadh 693$ 600 min
+Addis_Ababa Madrid 597$ 900 min
+Paris Brasília 614$ 900 min
+Canberra N'Djamena 1191$ 1560 min
+Bogota Paris 743$ 880 min
+Ashgabat Nuuk 2040$ 2000 min
+Nuuk Muscat 1500$ 1800 min
+Tokyo Brasília 1103$ 1670 min
+Cairo Riyadh 149$ 130 min
+Windhoek Nuuk 1613$ 2300 min
+London Lima 713$ 1200 min
+Tokyo Nuuk 1800$ 1480 min
+Dodoma Sucre 1460$ 2000 min
+Bangkok Warsaw 720$ 1200 min
+Sucre Washington_DC 688$ 900 min
+Mexico_City Montevideo 467$ 650 min
+Tehran Moscow 614$ 880 min
+Cairo Helsinki 300$ 550 min
+Mexico_City Riyadh 1009$ 1200 min
+Ottawa Antananarivo 1090$ 2457 min
+Manila Madrid 682$ 1500 min
+Bogota Mexico_City 273$ 400 min
+Dodoma Beijing 532$ 1021 min
+Lima Brasília 264$ 260 min
+Kyiv Ankara 82$ 260 min
+Kyiv Rabat 500$ 1200 min
+Moscow Naypyidaw 580$ 1620 min
+Stockholm Muscat 268$ 1300 min
+N'Djamena Ashgabat 943$ 1295 min
+Ottawa Mumbai 989$ 1045 min
+Brasília Nuuk 1100$ 1300 min
+Washington_DC Algiers 567$ 1250 min
+Warsaw Antananarivo 977$ 1400 min
+Rome Brasília 570$ 900 min
+Ottawa Ashgabat 1294$ 1185 min
+Oslo Manila 710$ 1600 min
+Brasília Madrid 592$ 885 min
+Reykjavik Addis_Ababa 1108$ 950 min
+Madrid Jakarta 1150$ 1050 min
+Berlin Nuuk 956$ 1400 min
+Windhoek Reykjavik 1778$ 2090 min
+Windhoek Cairo 765$ 878 min
+Berlin Canberra 1677$ 1560 min
+Bangkok Madrid 559$ 1410 min
+Naypyidaw Muscat 524$ 1060 min 
+Jakarta Kyiv 698$ 732 min 
+Abuja Stockholm 1845$ 1495 min 
+Windhoek Buenos_Aires 980$ 1160 min 
+Antananarivo Ulaanbaatar 1221$ 2100 min 
+Islamabad London 550$ 530 min 
+Ashgabat Ottawa 1254$ 1040 min 
+Oslo Tokyo 888$ 689 min 
+Nuuk Dodoma 2000$ 1440 min 
+Muscat Khartoum 450$ 304 min 
+Addis_Ababa Warsaw 670$ 468 min 
+Manila Oslo 957$ 900 min 
+Rome Manila 987$ 790 min 
+Riyadh Ashgabat 378$ 258 min 
+Cairo Windhoek 711$ 697 min 

@@ -1,0 +1,82 @@
+package application;
+import javafx.scene.control.Button;
+import java.util.LinkedList;
+
+public class Country implements Comparable<Country> {
+     String name;
+     float x, y;
+     LinkedList<Edge> adjacentsList;
+     double tempCost;
+     Country tempPrev;
+     Button test;
+
+     public Country() {}
+    public Country(String name, float x, float y) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        this.adjacentsList = new LinkedList<>();
+        this.tempCost = Double.MAX_VALUE;
+        this.tempPrev = null;
+        this.test = new Button();
+    }
+
+    public void addAdjacentCity(Country city, double distance, double cost, double time) {
+        Edge edge = new Edge(city, distance, cost, time);
+        adjacentsList.add(edge);
+    }
+
+    public void resetTemps() {
+        this.tempCost = Double.MAX_VALUE;
+        this.tempPrev = null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public LinkedList<Edge> getAdjacentsList() {
+        return adjacentsList;
+    }
+
+    public double getTempCost() {
+        return tempCost;
+    }
+
+    public void setTempCost(double tempCost) {
+        this.tempCost = tempCost;
+    }
+
+    public Country getTempPrev() {
+        return tempPrev;
+    }
+
+    public void setTempPrev(Country tempPrev) {
+        this.tempPrev = tempPrev;
+    }
+
+    public Button getTest() {
+        return test;
+    }
+
+    public void setTest(Button test) {
+        this.test = test;
+    }
+
+    @Override
+    public int compareTo(Country other) {
+        return Double.compare(this.tempCost, other.tempCost);
+    }
+
+    public String getFullName() {
+        return this.name;
+    }
+}

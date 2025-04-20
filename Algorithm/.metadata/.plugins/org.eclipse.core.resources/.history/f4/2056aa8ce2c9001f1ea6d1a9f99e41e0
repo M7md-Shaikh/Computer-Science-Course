@@ -1,0 +1,43 @@
+
+package application;
+
+
+public class Edge {
+	Country adjacent;
+	double distance;
+	double cost;
+	int time;
+	
+	public Edge(Country adjacentCity, double distance,double cost,int time) {
+		this.adjacent = adjacentCity;
+		this.distance = distance;
+		this.cost=cost;
+		this.time=time;
+	}
+
+	public Country getAdjacentCity() {
+		return adjacent;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+	
+
+	public double getCost() {
+		return cost;
+	}
+
+
+	public int getTime() {
+		return time;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Edge [adjacent=" + adjacent + ", distance=" + distance + "]";
+	}
+	
+}
